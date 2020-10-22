@@ -41,6 +41,7 @@ class RemindersFragment : Fragment() {
         rvReminders.adapter = reminderAdapter
         rvReminders.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         observeAddReminderResult()
+        createItemTouchHelper().attachToRecyclerView(rvReminders)
     }
 
     private fun observeAddReminderResult() {
