@@ -5,11 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_reminders.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class RemindersFragment : Fragment() {
+
+    private val reminders = arrayListOf<Reminder>()
+    private val reminderAdapter = ReminderAdapter(reminders)
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +29,14 @@ class RemindersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        initViews()
     }
+
+    private fun initViews() {
+        rvReminders.layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        rvReminders.adapter = reminderAdapter
+        rvReminders.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+    }
+
 }
